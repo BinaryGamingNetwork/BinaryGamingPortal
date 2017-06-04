@@ -1,0 +1,754 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BinaryGamingData.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="BinaryGamingDataStoreContainer">
+    <EntitySet Name="Members" EntityType="BinaryGamingData.Store.Members" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Transactions" EntityType="BinaryGamingData.Store.Transactions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MembershipTypes" EntityType="BinaryGamingData.Store.MembershipTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TransactionTypes" EntityType="BinaryGamingData.Store.TransactionTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CommitteePositions" EntityType="BinaryGamingData.Store.CommitteePositions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Committees" EntityType="BinaryGamingData.Store.Committees" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LoginLogs" EntityType="BinaryGamingData.Store.LoginLogs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Roles" EntityType="BinaryGamingData.Store.Roles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MemberRoles" EntityType="BinaryGamingData.Store.MemberRoles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Invoices" EntityType="BinaryGamingData.Store.Invoices" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="MembershipTypesMembers" Association="BinaryGamingData.Store.MembershipTypesMembers">
+      <End Role="MembershipTypes" EntitySet="MembershipTypes" />
+      <End Role="Members" EntitySet="Members" />
+    </AssociationSet>
+    <AssociationSet Name="TransactionTypesTransaction" Association="BinaryGamingData.Store.TransactionTypesTransaction">
+      <End Role="TransactionTypes" EntitySet="TransactionTypes" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="MembersTransaction" Association="BinaryGamingData.Store.MembersTransaction">
+      <End Role="Members" EntitySet="Members" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="CommitteePositionsCommittee" Association="BinaryGamingData.Store.CommitteePositionsCommittee">
+      <End Role="CommitteePositions" EntitySet="CommitteePositions" />
+      <End Role="Committee" EntitySet="Committees" />
+    </AssociationSet>
+    <AssociationSet Name="MembersCommittee" Association="BinaryGamingData.Store.MembersCommittee">
+      <End Role="Members" EntitySet="Members" />
+      <End Role="Committee" EntitySet="Committees" />
+    </AssociationSet>
+    <AssociationSet Name="MembersLoginLog" Association="BinaryGamingData.Store.MembersLoginLog">
+      <End Role="Members" EntitySet="Members" />
+      <End Role="LoginLog" EntitySet="LoginLogs" />
+    </AssociationSet>
+    <AssociationSet Name="RolesMemberRoles" Association="BinaryGamingData.Store.RolesMemberRoles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="MemberRoles" EntitySet="MemberRoles" />
+    </AssociationSet>
+    <AssociationSet Name="MemberRolesMembers" Association="BinaryGamingData.Store.MemberRolesMembers">
+      <End Role="MemberRoles" EntitySet="MemberRoles" />
+      <End Role="Members" EntitySet="Members" />
+    </AssociationSet>
+    <AssociationSet Name="MembersInvoices" Association="BinaryGamingData.Store.MembersInvoices">
+      <End Role="Members" EntitySet="Members" />
+      <End Role="Invoices" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="InvoicesTransaction" Association="BinaryGamingData.Store.InvoicesTransaction">
+      <End Role="Invoices" EntitySet="Invoices" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Members">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" Nullable="false" MaxLength="40" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="MiddleNames" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="Address1" Type="nvarchar" Nullable="false" MaxLength="40" />
+    <Property Name="Address2" Type="nvarchar" Nullable="false" MaxLength="40" />
+    <Property Name="Suburb" Type="nvarchar" Nullable="false" MaxLength="40" />
+    <Property Name="State" Type="nvarchar" Nullable="false" MaxLength="3" />
+    <Property Name="Postcode" Type="nvarchar" Nullable="false" MaxLength="4" />
+    <Property Name="Phone" Type="nvarchar" Nullable="false" MaxLength="25" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="Mobile" Type="nvarchar" Nullable="false" MaxLength="25" />
+    <Property Name="DateJoined" Type="datetime" Nullable="false" />
+    <Property Name="FinancialYN" Type="bit" Nullable="false" />
+    <Property Name="MembershipTypesId" Type="int" Nullable="false" />
+    <Property Name="MembershipExpiry" Type="datetime" Nullable="false" />
+    <Property Name="DiscordName" Type="nvarchar" Nullable="false" MaxLength="40" />
+    <Property Name="DiscordId" Type="bigint" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="LoginAttempts" Type="int" Nullable="false" />
+    <Property Name="LockedYN" Type="bit" Nullable="false" />
+    <Property Name="LastLoggedIn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Transactions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Nullable="false" Precision="8" Scale="2" />
+    <Property Name="TransactionTypesId" Type="int" Nullable="false" />
+    <Property Name="MembersId" Type="int" Nullable="false" />
+    <Property Name="InvoicesId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MembershipTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MembershipType" Type="nvarchar" Nullable="true" MaxLength="30" />
+    <Property Name="AnnualFee" Type="decimal" Nullable="true" Precision="8" Scale="2" />
+    <Property Name="ProrataPayments" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="TransactionTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TransactionType" Type="nvarchar" Nullable="false" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="CommitteePositions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostionName" Type="nvarchar" Nullable="true" MaxLength="40" />
+    <Property Name="Ranking" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Committees">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CommitteePositionsId" Type="int" Nullable="false" />
+    <Property Name="MembersId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LoginLogs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MembersId" Type="int" Nullable="false" />
+    <Property Name="LoginDate" Type="datetime" Nullable="false" />
+    <Property Name="SuccessfulYN" Type="bit" Nullable="false" />
+    <Property Name="ErrorException" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ClientIpAddress" Type="nvarchar" Nullable="false" MaxLength="60" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" Nullable="true" MaxLength="40" />
+  </EntityType>
+  <EntityType Name="MemberRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RolesId" Type="int" Nullable="false" />
+    <Property Name="MembersId" Type="int" Nullable="false" />
+    <Property Name="InsertYN" Type="bit" Nullable="false" />
+    <Property Name="ChangeYN" Type="bit" Nullable="false" />
+    <Property Name="DeleteYN" Type="bit" Nullable="false" />
+    <Property Name="LookupYN" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Invoices">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MembersId" Type="int" Nullable="true" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="MembershipType" Type="nvarchar" Nullable="true" MaxLength="30" />
+    <Property Name="Amount" Type="decimal" Nullable="false" Precision="8" Scale="2" />
+    <Property Name="Outstanding" Type="decimal" Nullable="false" Precision="8" Scale="2" />
+  </EntityType>
+  <Association Name="MembershipTypesMembers">
+    <End Role="MembershipTypes" Type="BinaryGamingData.Store.MembershipTypes" Multiplicity="1" />
+    <End Role="Members" Type="BinaryGamingData.Store.Members" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MembershipTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Members">
+        <PropertyRef Name="MembershipTypesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TransactionTypesTransaction">
+    <End Role="TransactionTypes" Type="BinaryGamingData.Store.TransactionTypes" Multiplicity="1" />
+    <End Role="Transaction" Type="BinaryGamingData.Store.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TransactionTypes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="TransactionTypesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MembersTransaction">
+    <End Role="Members" Type="BinaryGamingData.Store.Members" Multiplicity="1" />
+    <End Role="Transaction" Type="BinaryGamingData.Store.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Members">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="MembersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CommitteePositionsCommittee">
+    <End Role="CommitteePositions" Type="BinaryGamingData.Store.CommitteePositions" Multiplicity="1" />
+    <End Role="Committee" Type="BinaryGamingData.Store.Committees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CommitteePositions">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Committee">
+        <PropertyRef Name="CommitteePositionsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MembersCommittee">
+    <End Role="Members" Type="BinaryGamingData.Store.Members" Multiplicity="1" />
+    <End Role="Committee" Type="BinaryGamingData.Store.Committees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Members">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Committee">
+        <PropertyRef Name="MembersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MembersLoginLog">
+    <End Role="Members" Type="BinaryGamingData.Store.Members" Multiplicity="1" />
+    <End Role="LoginLog" Type="BinaryGamingData.Store.LoginLogs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Members">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LoginLog">
+        <PropertyRef Name="MembersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RolesMemberRoles">
+    <End Role="Roles" Type="BinaryGamingData.Store.Roles" Multiplicity="1" />
+    <End Role="MemberRoles" Type="BinaryGamingData.Store.MemberRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MemberRoles">
+        <PropertyRef Name="RolesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MemberRolesMembers">
+    <End Role="MemberRoles" Type="BinaryGamingData.Store.MemberRoles" Multiplicity="*" />
+    <End Role="Members" Type="BinaryGamingData.Store.Members" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Members">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MemberRoles">
+        <PropertyRef Name="MembersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MembersInvoices">
+    <End Role="Members" Type="BinaryGamingData.Store.Members" Multiplicity="0..1" />
+    <End Role="Invoices" Type="BinaryGamingData.Store.Invoices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Members">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Invoices">
+        <PropertyRef Name="MembersId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="InvoicesTransaction">
+    <End Role="Invoices" Type="BinaryGamingData.Store.Invoices" Multiplicity="1" />
+    <End Role="Transaction" Type="BinaryGamingData.Store.Transactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoices">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="InvoicesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="BinaryGamingData" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="BinaryGamingDataContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Members" EntityType="BinaryGamingData.Members" />
+          <EntitySet Name="Transactions" EntityType="BinaryGamingData.Transaction" />
+          <EntitySet Name="MembershipTypes" EntityType="BinaryGamingData.MembershipTypes" />
+          <AssociationSet Name="MembershipTypesMembers" Association="BinaryGamingData.MembershipTypesMembers">
+            <End Role="MembershipTypes" EntitySet="MembershipTypes" />
+            <End Role="Members" EntitySet="Members" />
+          </AssociationSet>
+          <EntitySet Name="TransactionTypes" EntityType="BinaryGamingData.TransactionTypes" />
+          <AssociationSet Name="TransactionTypesTransaction" Association="BinaryGamingData.TransactionTypesTransaction">
+            <End Role="TransactionTypes" EntitySet="TransactionTypes" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="MembersTransaction" Association="BinaryGamingData.MembersTransaction">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <EntitySet Name="CommitteePositions" EntityType="BinaryGamingData.CommitteePositions" />
+          <EntitySet Name="Committees" EntityType="BinaryGamingData.Committee" />
+          <AssociationSet Name="CommitteePositionsCommittee" Association="BinaryGamingData.CommitteePositionsCommittee">
+            <End Role="CommitteePositions" EntitySet="CommitteePositions" />
+            <End Role="Committee" EntitySet="Committees" />
+          </AssociationSet>
+          <AssociationSet Name="MembersCommittee" Association="BinaryGamingData.MembersCommittee">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="Committee" EntitySet="Committees" />
+          </AssociationSet>
+          <EntitySet Name="LoginLogs" EntityType="BinaryGamingData.LoginLog" />
+          <AssociationSet Name="MembersLoginLog" Association="BinaryGamingData.MembersLoginLog">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="LoginLog" EntitySet="LoginLogs" />
+          </AssociationSet>
+          <EntitySet Name="Roles" EntityType="BinaryGamingData.Roles" />
+          <EntitySet Name="MemberRoles" EntityType="BinaryGamingData.MemberRoles" />
+          <AssociationSet Name="RolesMemberRoles" Association="BinaryGamingData.RolesMemberRoles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="MemberRoles" EntitySet="MemberRoles" />
+          </AssociationSet>
+          <AssociationSet Name="MemberRolesMembers" Association="BinaryGamingData.MemberRolesMembers">
+            <End Role="MemberRoles" EntitySet="MemberRoles" />
+            <End Role="Members" EntitySet="Members" />
+          </AssociationSet>
+          <EntitySet Name="Invoices" EntityType="BinaryGamingData.Invoices" />
+          <AssociationSet Name="MembersInvoices" Association="BinaryGamingData.MembersInvoices">
+            <End Role="Members" EntitySet="Members" />
+            <End Role="Invoices" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="InvoicesTransaction" Association="BinaryGamingData.InvoicesTransaction">
+            <End Role="Invoices" EntitySet="Invoices" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Members">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname" Type="String" Nullable="false" Unicode="true" MaxLength="40" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="30" Unicode="true" />
+          <Property Name="MiddleNames" Type="String" Nullable="false" MaxLength="30" Unicode="true" />
+          <Property Name="Address1" Type="String" Nullable="false" MaxLength="40" Unicode="true" />
+          <Property Name="Address2" Type="String" Nullable="false" MaxLength="40" Unicode="true" />
+          <Property Name="Suburb" Type="String" Nullable="false" MaxLength="40" Unicode="true" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="3" Unicode="true" />
+          <Property Name="Postcode" Type="String" Nullable="false" MaxLength="4" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="25" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="200" />
+          <Property Name="Mobile" Type="String" Nullable="false" MaxLength="25" />
+          <Property Name="DateJoined" Type="DateTime" Nullable="false" />
+          <Property Name="FinancialYN" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MembershipTypes" Relationship="BinaryGamingData.MembershipTypesMembers" FromRole="Members" ToRole="MembershipTypes" />
+          <Property Name="MembershipTypesId" Type="Int32" Nullable="false" />
+          <Property Name="MembershipExpiry" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Transactions" Relationship="BinaryGamingData.MembersTransaction" FromRole="Members" ToRole="Transaction" />
+          <NavigationProperty Name="Committees" Relationship="BinaryGamingData.MembersCommittee" FromRole="Members" ToRole="Committee" />
+          <Property Name="DiscordName" Type="String" Nullable="false" MaxLength="40" Unicode="true" />
+          <Property Name="DiscordId" Type="Int64" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="100" />
+          <Property Name="LoginAttempts" Type="Int32" Nullable="false" />
+          <Property Name="LockedYN" Type="Boolean" Nullable="false" />
+          <Property Name="LastLoggedIn" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="LoginLogs" Relationship="BinaryGamingData.MembersLoginLog" FromRole="Members" ToRole="LoginLog" />
+          <NavigationProperty Name="MemberRoles" Relationship="BinaryGamingData.MemberRolesMembers" FromRole="Members" ToRole="MemberRoles" />
+          <NavigationProperty Name="Invoices" Relationship="BinaryGamingData.MembersInvoices" FromRole="Members" ToRole="Invoices" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionDate" Type="DateTime" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <NavigationProperty Name="TransactionType" Relationship="BinaryGamingData.TransactionTypesTransaction" FromRole="Transaction" ToRole="TransactionTypes" />
+          <Property Name="TransactionTypesId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Member" Relationship="BinaryGamingData.MembersTransaction" FromRole="Transaction" ToRole="Members" />
+          <Property Name="MembersId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Invoice" Relationship="BinaryGamingData.InvoicesTransaction" FromRole="Transaction" ToRole="Invoices" />
+          <Property Name="InvoicesId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MembershipTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MembershipType" Type="String" Nullable="true" MaxLength="30" Unicode="true" />
+          <NavigationProperty Name="Members" Relationship="BinaryGamingData.MembershipTypesMembers" FromRole="MembershipTypes" ToRole="Members" />
+          <Property Name="AnnualFee" Type="Decimal" Nullable="true" Precision="8" Scale="2" />
+          <Property Name="ProrataPayments" Type="Int32" Nullable="true" >
+            <Documentation>
+              <Summary>The number of payments per year to make up the annual fee</Summary>
+            </Documentation>
+          </Property>
+        </EntityType>
+        <Association Name="MembershipTypesMembers">
+          <End Type="BinaryGamingData.MembershipTypes" Role="MembershipTypes" Multiplicity="1" />
+          <End Type="BinaryGamingData.Members" Role="Members" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MembershipTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Members">
+              <PropertyRef Name="MembershipTypesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TransactionTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TransactionType" Type="String" Nullable="false" MaxLength="30" />
+          <NavigationProperty Name="Transactions" Relationship="BinaryGamingData.TransactionTypesTransaction" FromRole="TransactionTypes" ToRole="Transaction" />
+        </EntityType>
+        <Association Name="TransactionTypesTransaction">
+          <End Type="BinaryGamingData.TransactionTypes" Role="TransactionTypes" Multiplicity="1" />
+          <End Type="BinaryGamingData.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TransactionTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="TransactionTypesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MembersTransaction">
+          <End Type="BinaryGamingData.Members" Role="Members" Multiplicity="1" />
+          <End Type="BinaryGamingData.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="MembersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CommitteePositions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostionName" Type="String" Nullable="true" MaxLength="40" Unicode="true" />
+          <Property Name="Ranking" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Committees" Relationship="BinaryGamingData.CommitteePositionsCommittee" FromRole="CommitteePositions" ToRole="Committee" />
+        </EntityType>
+        <EntityType Name="Committee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="CommitteePosition" Relationship="BinaryGamingData.CommitteePositionsCommittee" FromRole="Committee" ToRole="CommitteePositions" />
+          <Property Name="CommitteePositionsId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Member" Relationship="BinaryGamingData.MembersCommittee" FromRole="Committee" ToRole="Members" />
+          <Property Name="MembersId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="CommitteePositionsCommittee">
+          <End Type="BinaryGamingData.CommitteePositions" Role="CommitteePositions" Multiplicity="1" />
+          <End Type="BinaryGamingData.Committee" Role="Committee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CommitteePositions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Committee">
+              <PropertyRef Name="CommitteePositionsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MembersCommittee">
+          <End Type="BinaryGamingData.Members" Role="Members" Multiplicity="1" />
+          <End Type="BinaryGamingData.Committee" Role="Committee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Committee">
+              <PropertyRef Name="MembersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="LoginLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Member" Relationship="BinaryGamingData.MembersLoginLog" FromRole="LoginLog" ToRole="Members" />
+          <Property Name="MembersId" Type="Int32" Nullable="false" />
+          <Property Name="LoginDate" Type="DateTime" Nullable="false" />
+          <Property Name="SuccessfulYN" Type="Boolean" Nullable="false" />
+          <Property Name="ErrorException" Type="String" Nullable="false" MaxLength="Max" />
+          <Property Name="ClientIpAddress" Type="String" Nullable="false" MaxLength="60" />
+        </EntityType>
+        <Association Name="MembersLoginLog">
+          <End Type="BinaryGamingData.Members" Role="Members" Multiplicity="1" />
+          <End Type="BinaryGamingData.LoginLog" Role="LoginLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LoginLog">
+              <PropertyRef Name="MembersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="true" MaxLength="40" Unicode="true" />
+          <NavigationProperty Name="MemberRoles" Relationship="BinaryGamingData.RolesMemberRoles" FromRole="Roles" ToRole="MemberRoles" />
+        </EntityType>
+        <EntityType Name="MemberRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Role" Relationship="BinaryGamingData.RolesMemberRoles" FromRole="MemberRoles" ToRole="Roles" />
+          <Property Name="RolesId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Member" Relationship="BinaryGamingData.MemberRolesMembers" FromRole="MemberRoles" ToRole="Members" />
+          <Property Name="MembersId" Type="Int32" Nullable="false" />
+          <Property Name="InsertYN" Type="Boolean" Nullable="false" />
+          <Property Name="ChangeYN" Type="Boolean" Nullable="false" />
+          <Property Name="DeleteYN" Type="Boolean" Nullable="false" />
+          <Property Name="LookupYN" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <Association Name="RolesMemberRoles">
+          <End Type="BinaryGamingData.Roles" Role="Roles" Multiplicity="1" />
+          <End Type="BinaryGamingData.MemberRoles" Role="MemberRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MemberRoles">
+              <PropertyRef Name="RolesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MemberRolesMembers">
+          <End Type="BinaryGamingData.MemberRoles" Role="MemberRoles" Multiplicity="*" />
+          <End Type="BinaryGamingData.Members" Role="Members" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MemberRoles">
+              <PropertyRef Name="MembersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Invoices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Member" Relationship="BinaryGamingData.MembersInvoices" FromRole="Invoices" ToRole="Members" />
+          <Property Name="MembersId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Transactions" Relationship="BinaryGamingData.InvoicesTransaction" FromRole="Invoices" ToRole="Transaction" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="MembershipType" Type="String" Nullable="true" MaxLength="30" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="Outstanding" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+        </EntityType>
+        <Association Name="MembersInvoices">
+          <End Type="BinaryGamingData.Members" Role="Members" Multiplicity="0..1" />
+          <End Type="BinaryGamingData.Invoices" Role="Invoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Members">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="MembersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="InvoicesTransaction">
+          <End Type="BinaryGamingData.Invoices" Role="Invoices" Multiplicity="1" />
+          <End Type="BinaryGamingData.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="InvoicesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BinaryGamingDataStoreContainer" CdmEntityContainer="BinaryGamingDataContainer">
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="IsTypeOf(BinaryGamingData.Members)">
+        <MappingFragment StoreEntitySet="Members">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleNames" ColumnName="MiddleNames" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Suburb" ColumnName="Suburb" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="DateJoined" ColumnName="DateJoined" />
+          <ScalarProperty Name="FinancialYN" ColumnName="FinancialYN" />
+          <ScalarProperty Name="MembershipTypesId" ColumnName="MembershipTypesId" />
+          <ScalarProperty Name="MembershipExpiry" ColumnName="MembershipExpiry" />
+          <ScalarProperty Name="DiscordName" ColumnName="DiscordName" />
+          <ScalarProperty Name="DiscordId" ColumnName="DiscordId" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+          <ScalarProperty Name="LoginAttempts" ColumnName="LoginAttempts" />
+          <ScalarProperty Name="LockedYN" ColumnName="LockedYN" />
+          <ScalarProperty Name="LastLoggedIn" ColumnName="LastLoggedIn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="IsTypeOf(BinaryGamingData.Transaction)">
+        <MappingFragment StoreEntitySet="Transactions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="TransactionTypesId" ColumnName="TransactionTypesId" />
+          <ScalarProperty Name="MembersId" ColumnName="MembersId" />
+          <ScalarProperty Name="InvoicesId" ColumnName="InvoicesId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MembershipTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(BinaryGamingData.MembershipTypes)">
+        <MappingFragment StoreEntitySet="MembershipTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MembershipType" ColumnName="MembershipType" />
+          <ScalarProperty Name="AnnualFee" ColumnName="AnnualFee" />
+          <ScalarProperty Name="ProrataPayments" ColumnName="ProrataPayments" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TransactionTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(BinaryGamingData.TransactionTypes)">
+        <MappingFragment StoreEntitySet="TransactionTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CommitteePositions">
+      <EntityTypeMapping TypeName="IsTypeOf(BinaryGamingData.CommitteePositions)">
+        <MappingFragment StoreEntitySet="CommitteePositions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PostionName" ColumnName="PostionName" />
+          <ScalarProperty Name="Ranking" ColumnName="Ranking" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Committees">
+      <EntityTypeMapping TypeName="IsTypeOf(BinaryGamingData.Committee)">
+        <MappingFragment StoreEntitySet="Committees">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CommitteePositionsId" ColumnName="CommitteePositionsId" />
+          <ScalarProperty Name="MembersId" ColumnName="MembersId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoginLogs">
+      <EntityTypeMapping TypeName="IsTypeOf(BinaryGamingData.LoginLog)">
+        <MappingFragment StoreEntitySet="LoginLogs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MembersId" ColumnName="MembersId" />
+          <ScalarProperty Name="LoginDate" ColumnName="LoginDate" />
+          <ScalarProperty Name="SuccessfulYN" ColumnName="SuccessfulYN" />
+          <ScalarProperty Name="ErrorException" ColumnName="ErrorException" />
+          <ScalarProperty Name="ClientIpAddress" ColumnName="ClientIpAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="IsTypeOf(BinaryGamingData.Roles)">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MemberRoles">
+      <EntityTypeMapping TypeName="IsTypeOf(BinaryGamingData.MemberRoles)">
+        <MappingFragment StoreEntitySet="MemberRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RolesId" ColumnName="RolesId" />
+          <ScalarProperty Name="MembersId" ColumnName="MembersId" />
+          <ScalarProperty Name="InsertYN" ColumnName="InsertYN" />
+          <ScalarProperty Name="ChangeYN" ColumnName="ChangeYN" />
+          <ScalarProperty Name="DeleteYN" ColumnName="DeleteYN" />
+          <ScalarProperty Name="LookupYN" ColumnName="LookupYN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoices">
+      <EntityTypeMapping TypeName="IsTypeOf(BinaryGamingData.Invoices)">
+        <MappingFragment StoreEntitySet="Invoices">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MembersId" ColumnName="MembersId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="MembershipType" ColumnName="MembershipType" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Outstanding" ColumnName="Outstanding" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
